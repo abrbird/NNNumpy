@@ -43,15 +43,15 @@ Now there is one model: sequential neural network.
 
 _________________________________________________________________
 ## Examples
-####1. Regression (regression_test.py) <br> 
+#### 1. Regression (regression_test.py) <br> 
 Model fitted on noised data (blue and orange dots) predictions<br>
 ![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/regr_test.png?raw=true)
-####2. Classification (classification_test.py) <br>
+#### 2. Classification (classification_test.py) <br>
 It is the dataset <br>
 ![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/classif_dataset.png?raw=true) <br>
 And predictions after fitting (~97% accuracy on the whole dataset) <br>
 ![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/classif_result.png?raw=true) <br>
-####3. MNIST <br>
+#### 3. MNIST <br>
  You can use a pre-trained models (re-train it) or train your own models. <br>
   - MLP (mnist_mlp_test.py) <br>
   This model after 15 epochs gets to 97.3% validation accuracy.
@@ -81,7 +81,7 @@ no. : Layer name (output_shape)	: description <br>
 9 : FullyConnected (None, 10)	: SoftMax(probabilities)(11770 params) <br>
 Total params num: 2796754 <br>
 
-####4. Cifar-10 <br>
+#### 4. Cifar-10 <br>
 There are also pre-trained models that you can check (re-train) or train your own models.
   - MLP <br>
   This model gets to 51.13% validation accuracy after 10 epochs.
