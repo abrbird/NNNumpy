@@ -48,13 +48,11 @@ Model fitted on noised data (blue and orange dots)
 ![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/regr_test.png?raw=true)
 2. Classification (classification_test.py)
 It is the dataset
-![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/classif_dataset.png?raw=true)
-
+![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/classif_dataset.png?raw=true) <br>
 And predictions after fitting (~97% accuracy on the whole dataset)
-![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/classif_result.png?raw=true)
+![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/classif_result.png?raw=true) <br>
 3. MNIST
- You can use a pre-trained models (re-train it) or train your own models.
-
+ You can use a pre-trained models (re-train it) or train your own models. <br>
   - MLP (mnist_mlp_test.py)
   This model after 15 epochs gets to 97.3% validation accuracy.
 > NeuralNetwork (7 layers) input_shape: (None, 784) <br>
@@ -81,7 +79,6 @@ no. : Layer name (output_shape)	: description <br>
 8 : FullyConnected (None, 1176)	: ReLU[0,inf)(2767128 params) <br>
 9 : FullyConnected (None, 10)	: SoftMax(probabilities)(11770 params) <br>
 Total params num: 2796754 <br>
-
 4. Cifar-10
 There are also pre-trained models that you can check (re-train) or train your own models.
   - MLP
@@ -95,9 +92,8 @@ no. : Layer name (output_shape)	: description <br>
 5 : FullyConnected (None, 200)	: ArcTan(-Pi/2,Pi/2)(60200 params) <br>
 6 : FullyConnected (None, 10)	: SoftMax(probabilities)(2010 params) <br>
 Total params num: 1244360 <br>
-
   - CNN
-  And this model gets to 64.4% validation accuracy after 12 epochs.
+  And this model gets to 64.4% validation accuracy after 12 epochs. <br>
 > NeuralNetwork (18 layers) input_shape: (None, 3, 32, 32) <br>
 no. : Layer name (output_shape)	: description <br>
 1 : Convolution2D (None, 12, 32, 32)	: 12 3x3 Linear(-inf,inf)(336 params) <br>
