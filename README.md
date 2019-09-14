@@ -44,12 +44,12 @@ Now there is one model: sequential neural network.
 _________________________________________________________________
 ## Examples
 1. Regression (regression_test.py) <br>
-Model fitted on noised data (blue and orange dots)
+Model fitted on noised data (blue and orange dots) <br>
 ![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/regr_test.png?raw=true)
 2. Classification (classification_test.py) <br>
-It is the dataset
+It is the dataset <br>
 ![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/classif_dataset.png?raw=true) <br>
-And predictions after fitting (~97% accuracy on the whole dataset)
+And predictions after fitting (~97% accuracy on the whole dataset) <br>
 ![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/classif_result.png?raw=true) <br>
 3. MNIST <br>
  You can use a pre-trained models (re-train it) or train your own models. <br>
