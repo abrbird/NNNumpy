@@ -43,17 +43,17 @@ Now there is one model: sequential neural network.
 
 _________________________________________________________________
 ## Examples
-1. Regression (regression_test.py)
+1. Regression (regression_test.py) <br>
 Model fitted on noised data (blue and orange dots)
 ![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/regr_test.png?raw=true)
-2. Classification (classification_test.py)
+2. Classification (classification_test.py) <br>
 It is the dataset
 ![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/classif_dataset.png?raw=true) <br>
 And predictions after fitting (~97% accuracy on the whole dataset)
 ![alt text](https://github.com/zBlur/NNNumpy/blob/master/NN_tests/classif_result.png?raw=true) <br>
-3. MNIST
+3. MNIST <br>
  You can use a pre-trained models (re-train it) or train your own models. <br>
-  - MLP (mnist_mlp_test.py)
+  - MLP (mnist_mlp_test.py) <br>
   This model after 15 epochs gets to 97.3% validation accuracy.
 > NeuralNetwork (7 layers) input_shape: (None, 784) <br>
 no. : Layer name (output_shape)	: description <br>
@@ -65,7 +65,7 @@ no. : Layer name (output_shape)	: description <br>
 6 : Dropout (None, 400)	: None <br>
 7 : FullyConnected (None, 10)	: SoftMax(probabilities)(4010 params) <br>
 Total params num: 480010 <br>
-  - CNN (mnist_cnn_test.py)
+  - CNN (mnist_cnn_test.py) <br>
   And this model after 5 epochs gets to 98.45% validation accuracy.
 > NeuralNetwork (9 layers) input_shape: (None, 1, 28, 28) <br>
 no. : Layer name (output_shape)	: description <br>
@@ -79,9 +79,9 @@ no. : Layer name (output_shape)	: description <br>
 8 : FullyConnected (None, 1176)	: ReLU[0,inf)(2767128 params) <br>
 9 : FullyConnected (None, 10)	: SoftMax(probabilities)(11770 params) <br>
 Total params num: 2796754 <br>
-4. Cifar-10
+4. Cifar-10 <br>
 There are also pre-trained models that you can check (re-train) or train your own models.
-  - MLP
+  - MLP <br>
   This model gets to 51.13% validation accuracy after 10 epochs.
 > NeuralNetwork (6 layers) input_shape: (None, 3072) <br>
 no. : Layer name (output_shape)	: description <br>
@@ -92,7 +92,7 @@ no. : Layer name (output_shape)	: description <br>
 5 : FullyConnected (None, 200)	: ArcTan(-Pi/2,Pi/2)(60200 params) <br>
 6 : FullyConnected (None, 10)	: SoftMax(probabilities)(2010 params) <br>
 Total params num: 1244360 <br>
-  - CNN
+  - CNN <br>
   And this model gets to 64.4% validation accuracy after 12 epochs. <br>
 > NeuralNetwork (18 layers) input_shape: (None, 3, 32, 32) <br>
 no. : Layer name (output_shape)	: description <br>
