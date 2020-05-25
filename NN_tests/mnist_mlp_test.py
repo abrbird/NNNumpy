@@ -9,7 +9,6 @@ import NN.activations as activations
 import NN.losses as losses
 import NN.optimizers as optimizers
 
-
 num_classes = 10
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -25,7 +24,6 @@ print('x_train.shape', x_train.shape)
 print('y_train.shape', y_train.shape)
 print('x_test.shape', x_test.shape)
 print('y_test.shape', y_test.shape)
-
 
 nn = NN.NeuralNetwork(classification=True)
 # saved_nn_file = None
@@ -61,8 +59,8 @@ l_rate = 1e-3
 loss_f = losses.CrossEntropy()
 lr_scheduler = LRScheduler(l_rate, schedule={10: 5e-4, 20: 1e-5, 25: 5e-5, 30: 1e-5})
 optimizer = optimizers.SGD(nn.layers,
-                            lr_scheduler=lr_scheduler,
-                            loss_function=loss_f)
+                           lr_scheduler=lr_scheduler,
+                           loss_function=loss_f)
 
 train_loss_list, train_accuracy_list, valid_loss_list, valid_accuracy_list = nn.fit(
     train_set=(x_train, y_train),
@@ -73,5 +71,3 @@ train_loss_list, train_accuracy_list, valid_loss_list, valid_accuracy_list = nn.
     model_saver=ModelSaver(model_name='mlp', folder_name='mnist_models', save_best=True, check_for='train_acc'),
     report=1,
     batch_report=0)
-
-

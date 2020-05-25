@@ -9,38 +9,17 @@ import NN.layers as lyrs
 class NeuralNetwork:
 
     def __str__(self):
-        result = 'NeuralNetwork ({} layers) input_shape: {}\n'.format(str(self.get_layers_num()),
-                                                                      self.layers[0].input_shape if len(
-                                                                          self.layers) > 0 else None)
+        result = ['NeuralNetwork ({} layers) input_shape: {}\n'.format(str(self.get_layers_num()),
+                                                                       self.layers[0].input_shape if len(
+                                                                           self.layers) > 0 else None)]
         total_params = 0
         if self.get_layers_num() > 0:
-            result += '# : Layer name (output_shape)\t: description' + '\n'
+            result += ["# : Layer name (output_shape)\t: description\n"]
             for i, layer in enumerate(self.layers):
-                # params = layer.get_params()
-                if isinstance(layer, lyrs.FullyConnected):
-                    description = '{}({} params)'.format(str(layer.activation), layer.input_shape[1] *
-                                                         layer.output_shape[1] + layer.output_shape[1])
-                    total_params += layer.input_shape[1] * layer.output_shape[1] + layer.output_shape[1]
-                elif isinstance(layer, lyrs.Activation):
-                    description = str(layer.activation)
-                elif isinstance(layer, lyrs.Convolution2D):
-                    ws_shape = layer.weights.shape
-                    ws_count = ws_shape[0] * ws_shape[1] * ws_shape[2] * ws_shape[3] + layer.bias.shape[0]
-                    total_params += ws_count
-                    description = '{} {}x{} {}({} params)'.format(layer.output_shape[1], layer.filter_shape[0],
-                                                                  layer.filter_shape[1],
-                                                                  str(layer.activation),
-                                                                  str(ws_count))
-                elif isinstance(layer, lyrs.BatchNormalization):
-                    description = '({} params)'.format(2 * np.prod(layer.input_shape[1:])) if layer.is_trainable else ''
-                    total_params += 2 * np.prod(layer.input_shape[1:]) if layer.is_trainable else 0
-                elif isinstance(layer, lyrs.MaxPool2D):
-                    description = '{}x{}'.format(layer.window_shape[0], layer.window_shape[1])
-                else:
-                    description = 'None'
-                result += '{} : {} {}\t: {}\n'.format(str(i + 1), str(layer), layer.output_shape, description)
-        result += 'Total params num: {}'.format(str(total_params))
-        return result
+                total_params += layer.get_weights_count()
+                result += ["{} : {} {}\t: {}\n".format(str(i + 1), str(layer), layer.output_shape, layer.description())]
+        result += ["Total params num: {}".format(str(total_params))]
+        return "".join(result)
 
     def __init__(self, classification, one_hot_encoding=None):
         self.layers = []
@@ -160,7 +139,7 @@ class NeuralNetwork:
             if report and report > 0:
                 if epochs % report == 0:
                     print('Start epoch: {}, learning_rate: {}'.format(epochs,
-                                                                optimizer.lr_scheduler.get_learning_rate(epochs)))
+                                                                      optimizer.lr_scheduler.get_learning_rate(epochs)))
             for b, j in enumerate(batch_indexes):
                 train_batch_inputs = train_input[indexes[j: j + batch_size]]
                 train_batch_labels = train_target[indexes[j: j + batch_size]]

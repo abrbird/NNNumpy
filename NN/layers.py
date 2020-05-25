@@ -30,11 +30,21 @@ class Layer:
     def get_regularization_params(self):
         raise NotImplementedError
 
+    def get_weights_count(self):
+        return 0
+
+    def description(self):
+        return ""
+
 
 class FullyConnected(Layer):
 
     def __str__(self):
         return "FullyConnected"
+
+    def description(self):
+        return "{}({} params)".format(self.activation, self.input_shape[1] *
+                                      self.output_shape[1] + self.output_shape[1])
 
     def __init__(self, outputs, activation: ActivationFunction = None, input_shape: tuple = None,
                  regularization=None, weights: np.ndarray = None, bias: np.ndarray = None, connected_to: Layer = None):
@@ -98,11 +108,17 @@ class FullyConnected(Layer):
     def get_regularization_params(self):
         return self.weights
 
+    def get_weights_count(self):
+        return self.input_shape[1] * self.output_shape[1] + self.output_shape[1]
+
 
 class Activation(Layer):
 
     def __str__(self):
         return "Activation"
+
+    def description(self):
+        return "{}".format(self.activation)
 
     def __init__(self, activation, input_shape: tuple = None, connected_to: Layer = None):
         super(Activation).__init__()
@@ -194,7 +210,10 @@ class Dropout(Layer):
 class BatchNormalization(Layer):
 
     def __str__(self):
-        return 'BatchNormalization'
+        return "BatchNormalization"
+
+    def description(self):
+        return "{}".format("({} params)".format(2 * np.prod(self.input_shape[1:])) if self.is_trainable else '')
 
     def __init__(self, betta=0, gamma=1, momentum=0.9, epsilon=1e-5, is_trainable=True, regularization=None,
                  input_shape: tuple = None, connected_to: Layer = None):
@@ -265,6 +284,9 @@ class BatchNormalization(Layer):
     def get_regularization_params(self):
         return self.gamma
 
+    def get_weights_count(self):
+        return 2 * np.prod(self.input_shape[1:]) if self.is_trainable else 0
+
 
 class Flatten(Layer):
 
@@ -320,7 +342,13 @@ class Flatten(Layer):
 class Convolution2D(Layer):
 
     def __str__(self):
-        return 'Convolution2D'
+        return "Convolution2D"
+
+    def description(self):
+        return " {} {}x{} {}({} params)".format(self.output_shape[1], self.filter_shape[0],
+                                                self.filter_shape[1],
+                                                str(self.activation),
+                                                self.get_weights_count())
 
     def __init__(self, filter_shape, depth, stride, padding, activation, regularization=None, input_shape: tuple = None,
                  connected_to: Layer = None, weights: np.ndarray = None, bias: np.ndarray = None):
@@ -483,11 +511,18 @@ class Convolution2D(Layer):
         else:
             return ims[:, :, padding:-padding, padding:-padding]
 
+    def get_weights_count(self):
+        return self.weights.shape[0] * self.weights.shape[1] * self.weights.shape[2] * self.weights.shape[3] + \
+               self.bias.shape[0]
+
 
 class MaxPool2D(Layer):
 
     def __str__(self):
         return "MaxPool2D"
+
+    def description(self):
+        return " {}x{}".format(self.window_shape[0], self.window_shape[1])
 
     def __init__(self, window_shape, stride, input_shape: tuple = None, connected_to: Layer = None):
         super(MaxPool2D).__init__()
